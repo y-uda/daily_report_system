@@ -37,10 +37,12 @@ public class ReportsEditServlet extends HttpServlet {
 
         Report r = em.find(Report.class, Integer.parseInt(request.getParameter("id")));
 
+
         em.close();
 
         Employee login_employee = (Employee)request.getSession().getAttribute("login_employee");
         if(login_employee.getId() == r.getEmployee().getId()) {
+
             request.setAttribute("report", r);
             request.setAttribute("_token", request.getSession().getId());
             request.getSession().setAttribute("report_id", r.getId());

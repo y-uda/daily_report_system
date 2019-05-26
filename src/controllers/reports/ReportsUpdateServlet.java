@@ -2,6 +2,7 @@ package controllers.reports;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -41,6 +42,29 @@ public class ReportsUpdateServlet extends HttpServlet {
             EntityManager em = DBUtil.createEntityManager();
 
             Report r = em.find(Report.class, (Integer)(request.getSession().getAttribute("report_id")));
+
+
+            String param = request.getParameter("punch_in");
+            if(param.length() < 8 ){
+                param=param+":00";
+            }
+
+            Time f = Time.valueOf(param);
+            r.setPunch_in(f);
+
+
+
+            String  p= request.getParameter("punch_out");
+
+            if(p.length() < 8 ){
+                p=p+":00";
+            }
+            System.out.println("k"+p+"です");
+
+            Time d = Time.valueOf(p);
+            r.setPunch_out(d);
+
+            System.out.println(d+"です");
 
             r.setReport_date(Date.valueOf(request.getParameter("report_date")));
             r.setTitle(request.getParameter("title"));

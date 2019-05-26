@@ -1,6 +1,7 @@
 package models;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -48,12 +49,24 @@ public class Report {
     @Column(name = "report_date", nullable = false)
     private Date report_date;
 
+
+
+    //追加
+    @Column(name = "punch_in",nullable = false)
+    private  Time punch_in;
+
+    @Column(name = "punch_out", nullable = false)
+    private  Time punch_out;
+
+
+
     @Column(name = "title", length = 255, nullable = false)
     private String title;
 
     @Lob
     @Column(name = "content", nullable = false)
     private String content;
+
 
     @Column(name = "created_at", nullable = false)
     private Timestamp created_at;
@@ -115,5 +128,21 @@ public class Report {
 
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public Time getPunch_in() {
+        return punch_in;
+    }
+
+    public void setPunch_in(Time punch_in) {
+        this.punch_in = punch_in;
+    }
+
+    public Time getPunch_out() {
+        return punch_out;
+    }
+
+    public void setPunch_out(Time punch_out) {
+        this.punch_out = punch_out;
     }
 }
